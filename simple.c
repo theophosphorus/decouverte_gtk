@@ -8,6 +8,13 @@ print_hello (GtkWidget *widget,
 }
 
 static void
+print_hello1 (GtkWidget *widget,
+             gpointer   data)
+{
+  g_print ("Allo le monde\n");
+}
+
+static void
 activate (GtkApplication *app,
           gpointer        user_data)
 {
