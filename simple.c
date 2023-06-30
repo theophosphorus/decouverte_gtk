@@ -19,17 +19,26 @@ activate (GtkApplication *app,
           gpointer        user_data)
 {
   GtkWidget *window;
+  GtkWidget *grid;
   GtkWidget *button;
+  GtkWidget *button2;
+  
 
   window = gtk_application_window_new (app);
   gtk_window_set_title (GTK_WINDOW (window), "Window");
-  gtk_window_set_default_size (GTK_WINDOW (window), 200, 200);
+  grid = gtk_grid_new ();
+  gtk_window_set_child (GTK_WINDOW (window), grid);
 
   button = gtk_button_new_with_label ("Hello World");
   g_signal_connect (button, "clicked", G_CALLBACK (print_hello), NULL);
-  gtk_window_set_child (GTK_WINDOW (window), button);
+  gtk_grid_attach (GTK_GRID (grid), button, 0, 0, 1, 1);
+
+  button2 = gtk_button_new_with_label ("Bonjour");
+  g_signal_connect (button2, "clicked", G_CALLBACK (print_hello), NULL);
+  gtk_grid_attach (GTK_GRID (grid), button2, 1, 0, 1, 1);
 
   gtk_window_present (GTK_WINDOW (window));
+
 }
 
 int
