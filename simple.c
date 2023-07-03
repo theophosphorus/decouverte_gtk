@@ -17,10 +17,10 @@ static void
 print_hello1 (GtkWidget *widget, gpointer data)
 {
   g_print ("Allo le monde\n");
-  GtkWidget *view =data.view;
+  /*GtkWidget *view =data.view;
 	GtkTextBuffer *buffer = data.buffer;
   
-  gtk_text_view_set_buffer(view, buffer);
+  gtk_text_view_set_buffer(view, buffer);*/
 }
 
 static void
@@ -41,6 +41,7 @@ activate (GtkApplication *app, gpointer user_data)
   gtk_window_set_title (GTK_WINDOW (window), "Window");
   grid = gtk_grid_new ();
   gtk_window_set_child (GTK_WINDOW (window), grid);  
+  gtk_window_set_title(GTK_WINDOW(window), "Decouverte de GTK");  
 
   TextView = gtk_text_view_new ();
   gtk_grid_attach (GTK_GRID (grid), TextView, 0, 2, 1, 1);
