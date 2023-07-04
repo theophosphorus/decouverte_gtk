@@ -52,6 +52,8 @@ activate (GtkApplication *app, gpointer user_data)
   test1.view = TextView;
   test1.buffer = buffer;
 
+  gtk_widget_set_size_request (TextView, 200, 100);
+
   button = gtk_button_new_with_label ("Hello World");
   g_signal_connect (button, "clicked", G_CALLBACK (print_hello), p);
   gtk_grid_attach (GTK_GRID (grid), button, 0, 0, 1, 1);
@@ -60,9 +62,6 @@ activate (GtkApplication *app, gpointer user_data)
   button2 = gtk_button_new_with_label ("Bonjour");
   g_signal_connect (button2, "clicked", G_CALLBACK (print_hello1), &test1);
   gtk_grid_attach (GTK_GRID (grid), button2, 1, 0, 1, 1);
-
-
-
 
   gtk_window_present (GTK_WINDOW (window));
 
