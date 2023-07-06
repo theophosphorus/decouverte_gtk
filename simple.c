@@ -28,6 +28,7 @@ activate (GtkApplication *app, gpointer user_data)
 {
   GtkWidget *window;
   GtkWidget *grid;
+  GtkWidget *grid2;
   GtkWidget *button;
   GtkWidget *button2;
   GtkWidget *TextView;
@@ -40,11 +41,13 @@ activate (GtkApplication *app, gpointer user_data)
   window = gtk_application_window_new (app);
   gtk_window_set_title (GTK_WINDOW (window), "Window");
   grid = gtk_grid_new ();
+  grid2 =gtk_grid_new ();
   gtk_window_set_child (GTK_WINDOW (window), grid);  
+  gtk_window_set_child (GTK_WINDOW (grid), grid2);
   gtk_window_set_title(GTK_WINDOW(window), "Decouverte de GTK");  
 
   TextView = gtk_text_view_new ();
-  gtk_grid_attach (GTK_GRID (grid), TextView, 0, 1, 3, 2);
+  gtk_grid_attach (GTK_GRID (grid2), TextView, 0, 0, 1, 1);
 
   buffer = gtk_text_view_get_buffer ( GTK_TEXT_VIEW (TextView));
   gtk_text_buffer_set_text (buffer, p, -1);
@@ -56,12 +59,14 @@ activate (GtkApplication *app, gpointer user_data)
 
   button = gtk_button_new_with_label ("Hello World");
   g_signal_connect (button, "clicked", G_CALLBACK (print_hello), p);
-  gtk_grid_attach (GTK_GRID (grid), button, 0, 0, 1, 1);
+  gtk_grid_attach (GTK_GRID (grid), button, 1, 0, 1, 1);
   
 
   button2 = gtk_button_new_with_label ("Bonjour");
   g_signal_connect (button2, "clicked", G_CALLBACK (print_hello1), &test1);
-  gtk_grid_attach (GTK_GRID (grid), button2, 1, 0, 1, 1);
+  gtk_grid_attach (GTK_GRID (grid), button2, 1, 1, 1, 1);
+  gtk_grid_attach (GTK_GRID (grid), grid2, 0, 0, 1, 1);
+
 
   gtk_window_present (GTK_WINDOW (window));
 
