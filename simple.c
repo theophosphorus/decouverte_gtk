@@ -47,7 +47,7 @@ activate (GtkApplication *app, gpointer user_data)
   gtk_window_set_title(GTK_WINDOW(window), "Decouverte de GTK");  
 
   TextView = gtk_text_view_new ();
-  gtk_grid_attach (GTK_GRID (grid2), TextView, 0, 0, 1, 1);
+  gtk_grid_attach (GTK_GRID (grid), TextView, 0, 1, 1, 1);
 
   buffer = gtk_text_view_get_buffer ( GTK_TEXT_VIEW (TextView));
   gtk_text_buffer_set_text (buffer, p, -1);
@@ -55,13 +55,9 @@ activate (GtkApplication *app, gpointer user_data)
   test1.view = TextView;
   test1.buffer = buffer;
 
-  gtk_widget_set_size_request (TextView, 720, 480);
-
-  GtkWidget *entry = gtk_entry_new ();
-  GtkWidget *label = gtk_label_new_with_mnemonic ("_Hello");
-  gtk_label_set_mnemonic_widget (GTK_LABEL (label), entry);
-  gtk_grid_attach (GTK_GRID (grid), entry, 0, 1, 1, 1);
-
+  GtkWidget *label = gtk_label_new ("salut");
+  gtk_grid_attach (GTK_GRID(grid2), label, 0,0,1,1);
+  gtk_widget_set_size_request (label, 720, 480);
 
   button = gtk_button_new_with_label ("Hello World");
   g_signal_connect (button, "clicked", G_CALLBACK (print_hello), p);
