@@ -1,4 +1,6 @@
 #include <gtk/gtk.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 typedef struct{
 	GtkWidget *view;
@@ -9,18 +11,20 @@ static void
 print_hello (GtkWidget *widget, gpointer data)
 {
   g_print ("Hello World\n");
+  g_print (data);
   char *po = data;
   po = "bonjo";
 }
 
 static void
-print_hello1 (GtkWidget *widget, gpointer data)
+print_hello1 (GtkWidget *widget, GtkWidget * TextView2)
 {
-  g_print ("Allo le monde\n");
+  gchar msg = gtk_text_view_get_buffer (TextView2);
+  g_print (&msg);
   /*GtkWidget *view =data.view;
 	GtkTextBuffer *buffer = data.buffer;
-  
-  gtk_text_view_set_buffer(view, buffer);*/
+  gtk_text_view_set_buffer(view, buffer);
+  gtk_entry_get_text*/
 }
 
 static void
@@ -33,11 +37,13 @@ activate (GtkApplication *app, gpointer user_data)
   GtkWidget *button2;
   GtkWidget *TextView;
   GtkTextBuffer *buffer;
+  GtkWidget * entree;
   char salut;
   char *p = &salut;
   p = "salut";
   Test test1;
   
+  entree = gtk_entry_new ();
   window = gtk_application_window_new (app);
   gtk_window_set_title (GTK_WINDOW (window), "Window");
   grid = gtk_grid_new ();
@@ -58,6 +64,7 @@ activate (GtkApplication *app, gpointer user_data)
   GtkWidget *label = gtk_label_new ("salut");
   gtk_grid_attach (GTK_GRID(grid2), label, 0,0,1,1);
   gtk_widget_set_size_request (label, 720, 480);
+  gtk_grid_attach (GTK_WINDOW (grid), entree, 0, 2, 1, 1);
 
   button = gtk_button_new_with_label ("Hello World");
   g_signal_connect (button, "clicked", G_CALLBACK (print_hello), p);
@@ -65,14 +72,14 @@ activate (GtkApplication *app, gpointer user_data)
   
 
   button2 = gtk_button_new_with_label ("Bonjour");
-  g_signal_connect (button2, "clicked", G_CALLBACK (print_hello1), &test1);
+  g_signal_connect (button2, "clicked", G_CALLBACK (print_hello1), TextView);
   gtk_grid_attach (GTK_GRID (grid), button2, 1, 1, 1, 1);
   gtk_grid_attach (GTK_GRID (grid), grid2, 0, 0, 1, 1);
-
 
   gtk_window_present (GTK_WINDOW (window));
 
 }
+
 
 int
 main (int argc, char **argv)
