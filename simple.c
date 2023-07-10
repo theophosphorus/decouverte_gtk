@@ -17,10 +17,12 @@ print_hello (GtkWidget *widget, gpointer data)
 }
 
 static void
-print_hello1 (GtkWidget *widget, GtkWidget * TextView2)
+print_hello1 (GtkWidget *widget, GtkWidget *TextView2)
 {
   gchar msg = gtk_text_view_get_buffer (TextView2);
-  g_print (&msg);
+  char messag = (char) msg;
+  messag = "salut";
+  printf (&messag);
   /*GtkWidget *view =data.view;
 	GtkTextBuffer *buffer = data.buffer;
   gtk_text_view_set_buffer(view, buffer);
