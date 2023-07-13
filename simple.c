@@ -1,6 +1,8 @@
 #include <gtk/gtk.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
+#include <glib.h>
 
 typedef struct{
 	GtkWidget *view;
@@ -13,18 +15,20 @@ print_hello (GtkWidget *widget, gpointer data)
   g_print ("Hello World\n");
   g_print (data);
   char *po = data;
-  po = "bonjo";
+  po = "bonjour\n";
+  printf (po);
 }
 
 static void
 print_hello1 (GtkWidget *widget, GtkWidget *TextView2)
 {
-  gchar msg [8];
-  //msg = gtk_text_view_get_buffer (TextView2);
-  char messag [8] = "samuel";
-  //messag = (char) msg;
-  
+  gchar msg = gtk_text_view_get_buffer (TextView2);
+  char messag = "samuel\n";
+  //g_strcpy(messag, msg);
   printf (&messag);
+  g_print (&msg);
+  //g_free(msg);
+  //free(messag);
   /*GtkWidget *view =data.view;
 	GtkTextBuffer *buffer = data.buffer;
   gtk_text_view_set_buffer(view, buffer);
@@ -41,7 +45,7 @@ activate (GtkApplication *app, gpointer user_data)
   GtkWidget *button2;
   GtkWidget *TextView;
   GtkTextBuffer *buffer;
-  GtkWidget * entree;
+  GtkWidget *entree;
   char salut;
   char *p = &salut;
   p = "salut";
