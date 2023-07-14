@@ -20,7 +20,7 @@ print_hello (GtkWidget *widget, gpointer data)
 }
 
 static void
-print_hello1 (GtkWidget *widget, GtkWidget *TextView2)
+callbackTest (GtkWidget *widget, GtkWidget *TextView2)
 {
   gchar msg = gtk_text_view_get_buffer (TextView2);
   char messag = "samuel\n";
@@ -80,7 +80,7 @@ activate (GtkApplication *app, gpointer user_data)
   
 
   button2 = gtk_button_new_with_label ("Bonjour");
-  g_signal_connect (button2, "clicked", G_CALLBACK (print_hello1), TextView);
+  g_signal_connect (button2, "clicked", G_CALLBACK (callbackTest), TextView);
   gtk_grid_attach (GTK_GRID (grid), button2, 1, 1, 1, 1);
   gtk_grid_attach (GTK_GRID (grid), grid2, 0, 0, 1, 1);
 
